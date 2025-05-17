@@ -1,6 +1,7 @@
 package com.daniella.bms.utils;
 
-import com.sun.security.auth.UserPrincipal;
+
+import com.daniella.bms.security.user.UserPrincipal;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

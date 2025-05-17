@@ -1,5 +1,6 @@
 package com.daniella.bms.models;
 
+import com.daniella.bms.models.TransactionalDetail;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -18,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 @Table(name = "transactions")
-public class Transaction extends TransactionalDetail{
+public class Transaction extends TransactionalDetail {
     @ManyToOne
     @JoinColumn(name = "destination_id")
     @JsonIgnore

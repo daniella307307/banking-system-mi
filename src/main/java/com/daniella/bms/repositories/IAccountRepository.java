@@ -8,7 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface IAccountRepository extends JpaRepository<Account, UUID> {
-    public boolean existsByOwner(Customer customer);
-    public Optional<Account> findByOwner(Customer customer);
-    public Optional<Account> findByAccountNumber(String accountNumber);
+    boolean existsByOwner(Customer customer);
+    Optional<Account> findByOwner(Customer customer);
+    Optional<Account> findByAccountNumber(String accountNumber);
+
+    Optional<Account> findByEmail(String email); // if 'email' exists in Account
+    Optional<Account> findByUserEmail(String email); // if 'user.email' is queryable
 }

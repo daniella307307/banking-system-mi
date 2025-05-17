@@ -4,16 +4,18 @@ import com.daniella.bms.common.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public class Customer extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

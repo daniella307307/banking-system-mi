@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @Column(name="role_name")
     private ERole roleName;
-    @ManyToMany(mappedBy = "roles",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 }

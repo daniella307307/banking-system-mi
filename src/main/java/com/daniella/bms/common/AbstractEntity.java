@@ -1,39 +1,34 @@
 package com.daniella.bms.common;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@SuperBuilder
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-public class AbstractEntity {
-    @CreatedDate
-    @Column(name="created_date", updatable = false,nullable = true)
-    private LocalDateTime createdDate;
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class AbstractEntity {
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-    @CreatedBy
-    @Column(name = "created_by",updatable = false,nullable = true)
-    private UUID createdBy;
-    @LastModifiedDate
-    @Column(insertable = false, nullable = true)
-    private LocalDateTime lastModifiedDate;
-    @LastModifiedBy
-    @Column(insertable = false, nullable = true)
-    private UUID lastModifiedBy;
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

@@ -1,5 +1,6 @@
 package com.daniella.bms.dtos.request.auth;
 
+import com.daniella.bms.annotations.ValidPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,5 +29,6 @@ public class RegisterDTO {
     @Schema(example = "Password@123")
     @NotBlank(message = "Date of birth cannot be blank")
     @Size(min = 8,message = "Password must be at least 8 characters long")
+    @ValidPassword(message = "Password should be strong")
     private String password;
 }

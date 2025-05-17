@@ -9,27 +9,25 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-@EqualsAndHashCode(callSuper = true)
-@Entity
 @Data
+@Entity
+@Table(name = "accounts")
 @SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
-public class Account extends AbstractEntity {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private UUID id;
-    private double balance =0.0;
-    @Column(unique = true,nullable = false)
+    @Column
     private String accountNumber;
-    @OneToOne
-    @JoinColumn(name = "owner_id")
-    @JsonIgnore
-    private Customer owner;
-    public Account(Customer owner){
-        this.owner = owner;
-    }
+    @Column
+    private double balance;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToMany(mappedBy = "destination")
+    private List<Transaction> incomingTransactions = new ArrayList<>();
 }

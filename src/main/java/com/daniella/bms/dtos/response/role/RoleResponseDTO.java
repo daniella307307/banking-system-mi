@@ -1,13 +1,19 @@
 package com.daniella.bms.dtos.response.role;
 
-import com.daniella.bms.models.Role;
+import com.daniella.bms.enums.ERole;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@Builder
 public class RoleResponseDTO {
-    private Role role;
+    private ERole roleName;
+    private UUID roleId;
+
+    public RoleResponseDTO(UUID roleId, ERole roleName) {
+     this.roleId=roleId;
+     this.roleName=roleName;
+    }
 }
