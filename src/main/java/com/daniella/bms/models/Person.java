@@ -1,4 +1,4 @@
-package com.daniella.vms.models;
+package com.daniella.bms.models;
 
 
 import jakarta.persistence.GeneratedValue;

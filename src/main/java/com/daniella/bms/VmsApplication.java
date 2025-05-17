@@ -1,4 +1,4 @@
-package com.daniella.vms;
+package com.daniella.bms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
